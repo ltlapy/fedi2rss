@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://{{ user.host }}/@{{ user.username }}</id>
+    {% if user.summary %}
+    <title>{{ user.summary }} (@{{ user.username }})</title>
+    {% else %}
+    <title>@{{ user.username }}@{{ user.host }}</title>
+    {% endif %}
+    <updated>2024-07-26T01:35:37.122Z</updated>
+    <generator>CherryPick</generator>
+    <author>
+        <name>
+            {% if user.summary %}
+            {{ user.summary }}
+            {% else %}
+            @{{ handle }}
+            {% endif %}
+        </name>
+        <uri>https://{{ user.host }}/@{{ user.username }}</uri>
+    </author>
+    <link rel="alternate" href="https://{{ user.host }}/@{{ user.username }}"/>
+    <!-- <link rel="self" href="https://example.com/@username.atom"/> -->
+    <subtitle>6966 Notes, 708 Following, 712 Followers · User description placeholder</subtitle>
+    <logo>https://k.lapy.link/proxy/avatar.webp?url=https%3A%2F%2Fs3.lapy.link%2Fnull%2Fb68c8722-5bd7-41c3-944d-762f766defc3.png&amp;avatar=1</logo>
+    <rights>
+        {% if nickname %}
+        {{ user.summary }}
+        {% else %}
+        @{{ user.username }}@{{ user.host }}
+        {% endif %}
+    </rights>
+    {% for post in posts %}
+    <entry>
+        <title type="html"><![CDATA[{% if post.summary %}{{ post.summary }}{% else %}{{ shorten(post.content, width=40) }}{% endif %}]]></title>
+        <id>{{ post.id }}</id>
+        <link href="{{ post.id }}"/>
+        <updated>{{ post.published }}</updated>
+        <content type="html"><![CDATA[{{post.content}}]]></content>
+    </entry>
+    {% endfor %}
+</feed>
