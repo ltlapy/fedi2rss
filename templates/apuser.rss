@@ -13,14 +13,14 @@
             {% if user.summary %}
             {{ user.summary }}
             {% else %}
-            @{{ handle }}
+            @{{ user.username }}@{{ user.host }}
             {% endif %}
         </name>
         <uri>https://{{ user.host }}/@{{ user.username }}</uri>
     </author>
     <link rel="alternate" href="https://{{ user.host }}/@{{ user.username }}"/>
     <!-- <link rel="self" href="https://example.com/@username.atom"/> -->
-    <subtitle>6966 Notes, 708 Following, 712 Followers · User description placeholder</subtitle>
+    <subtitle>Auto-generated Atom from @{{ user.username }}@{{ user.host }}</subtitle>
     <logo>https://k.lapy.link/proxy/avatar.webp?url=https%3A%2F%2Fs3.lapy.link%2Fnull%2Fb68c8722-5bd7-41c3-944d-762f766defc3.png&amp;avatar=1</logo>
     <rights>
         {% if nickname %}
